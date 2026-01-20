@@ -1,0 +1,294 @@
+/* --- Main Container --- */
+.bw-container {
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Force exact viewport dimensions */
+    width: 100vw;
+    height: 100vh;
+
+    /* Lock the container so it cannot move or scroll */
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    /* Prevent any content from spilling out or creating scrollbars */
+    overflow: hidden;
+    touch-action: none;
+    /* Disables touch panning on mobile devices */
+
+    font-family: sans-serif;
+    color: #e6e0d3;
+    z-index: 1;
+    font-family: 'Georgia', serif;
+}
+
+/* --- Star Shapes --- */
+.bw-star {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    aspect-ratio: 1;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: bwGlowPulse 2s infinite alternate ease-in-out;
+}
+
+@keyframes bwLaunchAndExplode {
+
+    /* 1. Launch: Starts below screen */
+    0% {
+        transform: translateY(105vh);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    /* 2. Ascent: Travels past the top edge (0vh) to -10vh */
+    80% {
+        transform: translateY(-10vh);
+        opacity: 1;
+        box-shadow: none;
+        background-color: inherit;
+    }
+
+    /* 3. The Instant of Blast: Occurs at -12vh (Higher than before) */
+    82% {
+        transform: translateY(-12vh);
+        opacity: 1;
+        background-color: #ffffff;
+        box-shadow:
+            0 0 40px 20px #ffffff,
+            25px -25px 0 2px #FFD700,
+            -25px -25px 0 2px #FF4500,
+            25px 25px 0 2px #FF1493,
+            -25px 25px 0 2px #00BFFF,
+            0px -35px 0 2px #00FF00;
+    }
+
+    /* 4. Expansion: Sparks move even higher during the bloom */
+    92% {
+        transform: translateY(-14vh);
+        opacity: 0.8;
+        box-shadow:
+            0 0 50px 10px rgba(255, 255, 255, 0.3),
+            50px -50px 0 1px #FFD700,
+            -50px -50px 0 1px #FF4500,
+            50px 50px 0 1px #FF1493,
+            -50px 50px 0 1px #00BFFF,
+            0px -60px 0 1px #00FF00;
+    }
+
+    /* 5. Dissipation: Ends high above the viewport */
+    100% {
+        transform: translateY(-20vh);
+        opacity: 0;
+        box-shadow:
+            0 0 80px 40px transparent,
+            80px -80px 0 0px transparent,
+            -80px -80px 0 0px transparent,
+            80px 80px 0 0px transparent,
+            -80px 80px 0 0px transparent,
+            0px -100px 0 0px transparent;
+    }
+}
+
+
+.bw-rocket-bomb {
+    position: absolute;
+    /* We don't set 'bottom' here; the keyframe 0% handles the starting position */
+    width: 8px;
+    height: 25px;
+    border-radius: 2px;
+    animation: bwLaunchAndExplode 4s infinite ease-in;
+    z-index: 1;
+}
+
+/* Rocket Tip */
+.bw-rocket-bomb::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: inherit;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* Rocket Flame/Trail */
+.bw-rocket-bomb::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 20px;
+    background: linear-gradient(to bottom, #FFD700, transparent);
+}
+
+/* --- Birthday Card --- */
+.bw-content {
+    text-align: center;
+    color: #858585;
+    z-index: 10;
+    font-size: 15px;
+    backdrop-filter: blur(3px);
+
+    padding: 0.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.bw-title {
+    font-weight: 400;
+    font-size: 1.2rem;
+    font-family: 'Pacifico', cursive;
+    color: #FFD700;
+}
+
+/* --- Positions --- */
+
+
+.bw-star-1 {
+    top: 5%;
+    left: 10%;
+    background-color: #FF6347;
+}
+
+.bw-star-2 {
+    top: 15%;
+    left: 90%;
+    background-color: #DA70D6;
+}
+
+.bw-star-3 {
+    top: 25%;
+    left: 30%;
+    background-color: #40E0D0;
+}
+
+.bw-star-4 {
+    top: 35%;
+    left: 70%;
+    background-color: #FFD700;
+}
+
+.bw-star-5 {
+    top: 45%;
+    left: 5%;
+    background-color: #9370DB;
+}
+
+.bw-star-6 {
+    top: 55%;
+    left: 85%;
+    background-color: #3CB371;
+}
+
+.bw-star-7 {
+    top: 65%;
+    left: 20%;
+    background-color: #FFB6C1;
+}
+
+.bw-star-8 {
+    top: 75%;
+    left: 60%;
+    background-color: #FFA500;
+}
+
+.bw-star-9 {
+    top: 85%;
+    left: 40%;
+    background-color: #B0C4DE;
+}
+
+.bw-star-10 {
+    top: 95%;
+    left: 75%;
+    background-color: #FF4500;
+}
+
+.bw-star-11 {
+    top: 10%;
+    left: 50%;
+    background-color: #87CEFA;
+}
+
+.bw-star-12 {
+    top: 90%;
+    left: 2%;
+    background-color: #C71585;
+}
+
+
+
+
+
+.bw-rocket-bomb-1 {
+    left: 10%;
+    animation-delay: 0s;
+    background-color: #e91e63;
+}
+
+.bw-rocket-bomb-2 {
+    left: 25%;
+    animation-delay: 1.5s;
+    background-color: #ba68c8;
+}
+
+.bw-rocket-bomb-3 {
+    left: 40%;
+    animation-delay: 0.5s;
+    background-color: #4db6ac;
+}
+
+.bw-rocket-bomb-4 {
+    left: 55%;
+    animation-delay: 2.2s;
+    background-color: #ff9800;
+}
+
+.bw-rocket-bomb-5 {
+    left: 70%;
+    animation-delay: 1s;
+    background-color: #ffeb3b;
+}
+
+.bw-rocket-bomb-6 {
+    left: 85%;
+    animation-delay: 3s;
+    background-color: #e91e63;
+}
+
+.bw-rocket-bomb-7 {
+    left: 15%;
+    animation-delay: 2.5s;
+    background-color: #4db6ac;
+}
+
+.bw-rocket-bomb-8 {
+    left: 80%;
+    animation-delay: 0.8s;
+    background-color: #ba68c8;
+}
+
+
+
+@keyframes bwGlowPulse {
+    from {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    to {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
